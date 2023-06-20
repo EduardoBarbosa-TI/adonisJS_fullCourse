@@ -1,0 +1,36 @@
+@layout('layouts/main')
+
+@section('content')
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Daily Dose Of Happy News</h1>
+      <p class="lead text-muted">Something short and important news that really can make positive changes in your life.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @each(article in articles)
+      <div class="col">
+        <div class="card shadow-sm" style="width: 18rem;">
+          <a href="#">
+            <p>{{article.title}}</p>
+          </a>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="{{ route('news_edit',[article.slug]) }}" class="btn btn-outline-secondary">Edit</a>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endeach
+  </div>
+</div>
+@end
