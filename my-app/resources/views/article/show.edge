@@ -1,0 +1,12 @@
+@layout('layouts/main')
+
+@section('content')
+<div class="container mt-5 texte-center">
+  <img src="{{article.image}}" class="img-fluid">
+  <h1 class="display-5">{{article.title}}</h1>
+
+  <p class="lead">
+    {{article.content}}
+  </p>
+</div>
+@endsection
