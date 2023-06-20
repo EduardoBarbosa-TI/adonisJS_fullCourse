@@ -1,22 +1,39 @@
 @layout('layouts/main')
+
 @section('content')
-  <h1>Create Article</h1>
-  <form action="{{ route('news_store') }}" method="POST">
+<div class="m-auto mt-5">
+  <form action="{{route('news.store')}}" method="POST" class="container col-lg-6">
+    <h1>Update this article</h1>
     {{ csrfField() }}
-    <input type="text" name="title" placeholder="Article Title">
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Article Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Article Title">
+    </div>
     @if(flashMessages.has('errors.title'))
-      <p> {{ flashMessages.get('errors.title') }}</p>
+    <p class="alert alert-danger"> {{ flashMessages.get('errors.title') }} </p>
     @end
-    <input type="file" name="image">
+
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="image">Upload</label>
+      <input type="file" name="image" class="form-control" id="image" />
+    </div>
     @if(flashMessages.has('errors.image'))
-      <p> {{ flashMessages.get('errors.image') }}</p>
+    <p class="alert alert-danger"> {{ flashMessages.get('errors.image') }} </p>
     @end
-    <textarea name="content" id="" cols="30" rows="10" placeholder="Article Content"></textarea>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Write article here</label>
+      <textarea placeholder="Article Content" class="form-control" name="content" id="content" rows="3"></textarea>
+    </div>
     @if(flashMessages.has('errors.content'))
-      <p> {{ flashMessages.get('errors.content') }}</p>
+    <p class="alert alert-danger"> {{ flashMessages.get('errors.content') }} </p>
     @end
-    <button type="submit">Create</button>
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary mb-3 block flex">Create</button>
+    </div>
   </form>
+</div>
+
 @end
-
-
