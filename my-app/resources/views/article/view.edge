@@ -13,24 +13,30 @@
 
 <div class="album py-5 bg-light">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="row">
       @each(article in articles)
-      <div class="col">
-        <div class="card shadow-sm" style="width: 18rem;">
-          <a href="#">
-            <p>{{article.title}}</p>
-          </a>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <a href="{{ route('news_edit',[article.slug]) }}" class="btn btn-outline-secondary">Edit</a>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="card shadow-sm">
+          <img src="{{ article.image }}" alt="">
+          <div class="card-body">
+            <a href="{{route('news.show',[article.slug])}}">
+              <p>{{article.title}}</p>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{{ route('news.edit',[article.slug]) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <form action="{{ route('news.destroy',[article.slug])}}?_method=DELETE" method="post">
+                  {{ csrfField() }}
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                </form>
+              </div>
+              <small class="text-muted">9 mins</small>
             </div>
-            <small class="text-muted">9 mins</small>
           </div>
         </div>
       </div>
+      @endeach
     </div>
-    @endeach
   </div>
 </div>
 @end
